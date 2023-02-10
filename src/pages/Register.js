@@ -42,9 +42,7 @@ const Register = () => {
       return;
     }
 
-    if (!isMember) {
-      dispatch(registerUser({ name, email, password }));
-    }
+    dispatch(registerUser({ name, email, password }));
   };
 
   const toggleMember = () => {
@@ -77,8 +75,8 @@ const Register = () => {
           handleChange={handleChange}
         />
 
-        <button type="submit" className="btn btn-block" disable={isLoading.toString()}>
-          submit
+        <button type="submit" className="btn btn-block" disable={isLoading}>
+          {isLoading ? "loading..." : "submit"}
         </button>
         <p>
           {values.isMember ? "Not a member yet ?" : "Already a member ?"}
