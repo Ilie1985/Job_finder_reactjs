@@ -56,7 +56,7 @@ const Register = () => {
     if(user){
      setTimeout(()=>{
       navigate("/")
-     },200)
+     },100)
     }
     //eslint-disable-next-line
   }, [user]);
