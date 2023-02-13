@@ -46,7 +46,8 @@ const Wrapper = styled.nav`
     width: 100%;
     background: var(--primary-100);
     box-shadow: var(--shadow-2);
-    padding: 0.5rem;
+    /* padding: 0.2rem; */
+   
     text-align: center;
     visibility: hidden;
     border-radius: var(--borderRadius);
@@ -60,6 +61,7 @@ const Wrapper = styled.nav`
     color: var(--primary-500);
     letter-spacing: var(--letterSpacing);
     text-transform: capitalize;
+  
     cursor: pointer;
   }
   .logo-text {
