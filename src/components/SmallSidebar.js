@@ -7,14 +7,24 @@ import { toggleSidebar } from "../features/user/userSlice";
 import NavLinks from "./NavLinks";
 
 const SmallSidebar = () => {
+  const { isSidebarOpen } = useSelector((store) => {
+    return store.user;
+  });
+
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
-      <div className="sidebar-container show-sidebar">
+      <div
+        className={
+          isSidebarOpen ? "sidebar-container show-sidebar" : "sidebar-container"
+        }
+      >
         <div className="content">
           <button
             className="close-btn"
             onClick={() => {
-              console.log("toggle");
+              dispatch(toggleSidebar());
             }}
           >
             <FaTimes />
