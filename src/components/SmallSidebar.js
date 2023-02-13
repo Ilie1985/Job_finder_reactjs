@@ -13,6 +13,10 @@ const SmallSidebar = () => {
 
   const dispatch = useDispatch();
 
+  const toggle = () => {
+    dispatch(toggleSidebar());
+  };
+
   return (
     <Wrapper>
       <div
@@ -32,7 +36,7 @@ const SmallSidebar = () => {
           <header>
             <Logo />
           </header>
-          <div className="nav-links">nav links</div>
+       <NavLinks toggleSidebar={toggle}/>
         </div>
       </div>
     </Wrapper>
