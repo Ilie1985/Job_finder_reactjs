@@ -25,18 +25,13 @@ const SmallSidebar = () => {
         }
       >
         <div className="content">
-          <button
-            className="close-btn"
-            onClick={() => {
-              dispatch(toggleSidebar());
-            }}
-          >
+          <button className="close-btn" onClick={toggle}>
             <FaTimes />
           </button>
           <header>
             <Logo />
           </header>
-       <NavLinks toggleSidebar={toggle}/>
+          <NavLinks toggleSidebar={toggle} />
         </div>
       </div>
     </Wrapper>
