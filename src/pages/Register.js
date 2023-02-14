@@ -14,15 +14,13 @@ const initialState = {
 };
 
 const Register = () => {
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
+  const [values, setValues] = useState(initialState);
   const { user, isLoading } = useSelector((store) => {
     return store.user;
   });
+  const dispatch = useDispatch();
 
-  const [values, setValues] = useState(initialState);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -53,10 +51,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if(user){
-     setTimeout(()=>{
-      navigate("/")
-     },100)
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
     //eslint-disable-next-line
   }, [user]);
@@ -90,7 +88,7 @@ const Register = () => {
         <button
           type="submit"
           className="btn btn-block"
-          disable={isLoading.toString()}
+          disabled={isLoading}
         >
           {isLoading ? "loading..." : "submit"}
         </button>

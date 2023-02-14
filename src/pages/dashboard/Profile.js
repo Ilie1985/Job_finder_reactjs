@@ -10,6 +10,8 @@ const Profile = () => {
   const { isLoading, user } = useSelector((store) => {
     return store.user;
   });
+  console.log("isLoading", isLoading, "USER", user);
+  const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
     name: user?.name || "",
@@ -18,17 +20,16 @@ const Profile = () => {
     location: user?.location || "",
   });
 
-  const dispatch = useDispatch();
-
-  const { name, email, lastName, location } = userData;
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, email, lastName, location } = userData;
 
     if (!name || !email || !lastName || location) {
       toast.error("please fill out all fields");
       return;
     }
+
+    dispatch(updateUser(userData));
   };
 
   const handleChange = (e) => {
@@ -45,7 +46,7 @@ const Profile = () => {
           <FormRow
             type="text"
             name="name"
-            value={name}
+            value={userData.name}
             handleChange={handleChange}
           />
 
@@ -53,21 +54,21 @@ const Profile = () => {
             type="text"
             labelText="last name"
             name="lastName"
-            value={lastName}
+            value={userData.lastName}
             handleChange={handleChange}
           />
 
           <FormRow
             type="email"
             name="email"
-            value={email}
+            value={userData.email}
             handleChange={handleChange}
           />
 
           <FormRow
             type="text"
             name="location"
-            value={location}
+            value={userData.location}
             handleChange={handleChange}
           />
 
