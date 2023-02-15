@@ -46,22 +46,25 @@ const jobSlice = createSlice({
       state[name] = value;
     },
     clearValues: () => {
-      return initialState;
+      return {
+        ...initialState,
+        jobLocation: getUserFromLocalStorage()?.location || "",
+      };
     },
   },
   extraReducers: (builder) => {
     builder
-    .addCase(createJobs.pending, (state) => {
-      state.isLoading = true;
-    })
-    .addCase(createJobs.fulfilled, (state) => {
-      state.isLoading = false;
-      toast.success("Job Created")
-    })
-    .addCase(createJobs.rejected, (state,{payload}) => {
-      state.isLoading = false;
-      toast.error(payload)
-    })
+      .addCase(createJobs.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createJobs.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.success("Job Created");
+      })
+      .addCase(createJobs.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      });
   },
 });
 

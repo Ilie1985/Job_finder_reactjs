@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormRow, FormRowSelect } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,9 +25,14 @@ const AddJob = () => {
     return store.job;
   });
 
+  const { user } = useSelector((store) => {
+    return store.user;
+  });
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!position || !company || !jobLocation) {
       toast.error("Please fill out all the fields");
       return;
@@ -37,17 +42,14 @@ const AddJob = () => {
 
   const handleJobInput = (e) => {
     const name = e.target.name;
-
     const value = e.target.value;
-
     dispatch(handleChange({ name, value }));
   };
 
-  const { user } = useSelector((store) => {
-    return store.user;
-  });
-
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(handleChange({ name: "jobLocation", value: user.location }));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <Wrapper>
