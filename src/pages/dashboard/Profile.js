@@ -10,7 +10,7 @@ const Profile = () => {
   const { isLoading, user } = useSelector((store) => {
     return store.user;
   });
-  console.log("isLoading", isLoading, "USER", user);
+
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
@@ -24,7 +24,7 @@ const Profile = () => {
     e.preventDefault();
     const { name, email, lastName, location } = userData;
 
-    if (!name || !email || !lastName || location) {
+    if (!name || !email || !lastName || !location) {
       toast.error("please fill out all fields");
       return;
     }

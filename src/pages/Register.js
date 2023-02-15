@@ -34,12 +34,12 @@ const Register = () => {
     e.preventDefault();
     const { name, email, password, isMember } = values;
 
-    if (!email || !password || (!isMember && !name)) {
-      toast.error("please fill out all fields");
-      return;
-    }
     if (isMember) {
       dispatch(loginUser({ email: email, password: password }));
+      return;
+    }
+    if (!email || !password || (!isMember && !name)) {
+      toast.error("please fill out all fields");
       return;
     }
 
@@ -85,11 +85,7 @@ const Register = () => {
           handleChange={handleChange}
         />
 
-        <button
-          type="submit"
-          className="btn btn-block"
-          disabled={isLoading}
-        >
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           {isLoading ? "loading..." : "submit"}
         </button>
         <p>
