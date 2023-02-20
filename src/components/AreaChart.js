@@ -1,7 +1,7 @@
 import React from "react";
 
 const AreaChart = () => {
-  return <div>AreaChart</div>;
+  return <h2>AreaChart</h2>;
 };
 
 export default AreaChart;
