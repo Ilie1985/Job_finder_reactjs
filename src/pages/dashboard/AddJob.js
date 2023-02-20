@@ -7,6 +7,7 @@ import {
   handleChange,
   clearValues,
   createJobs,
+  editJob,
 } from "../../features/job/jobSlice";
 
 const AddJob = () => {
@@ -37,6 +38,17 @@ const AddJob = () => {
       toast.error("Please fill out all the fields");
       return;
     }
+
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
+      return;
+    }
+
     dispatch(createJobs({ position, company, jobLocation, jobType, status }));
   };
 
