@@ -1,8 +1,9 @@
 import React from 'react'
+import Wrapper from '../assets/wrappers/StatItem';
 
-const StatItem = () => {
+const StatItem = ({ count, title, icon, color, bcg }) => {
   return (
-    <div>StatItem</div>
+    <Wrapper>StatItem</Wrapper>
   )
 }
 
