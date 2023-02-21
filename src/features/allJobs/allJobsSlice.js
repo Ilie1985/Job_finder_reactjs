@@ -24,7 +24,7 @@ const initialState = {
 export const getAllJobs = createAsyncThunk(
   "allJobs/getJobs",
   async (_, thunkAPI) => {
-    let url = `/jobs`;
+    let url = `/jobs?status=all&jobType=remote&sort=oldest&page=2`;
 
     try {
       const response = await customFetch.get(url, {
