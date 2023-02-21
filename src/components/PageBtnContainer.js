@@ -1,9 +1,56 @@
-import React from 'react'
+import React from "react";
+import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
+import Wrapper from "../assets/wrappers/PageBtnContainer";
+import { useSelector, useDispatch } from "react-redux";
 
 const PageBtnContainer = () => {
-  return (
-    <h2>PageBtnContainer</h2>
-  )
-}
+  const { numOfPages, page } = useSelector((store) => {
+    return store.allJobs;
+  });
 
-export default PageBtnContainer
+  const dispatch = useDispatch();
+
+  const pages = Array.from({ length: numOfPages }, (_, index) => {
+    return index + 1;
+  });
+  console.log(pages);
+
+  const nextPage = () => {
+    console.log("next page");
+  };
+  const prevPage = () => {
+    console.log("prev page");
+  };
+
+  return (
+    <Wrapper>
+      <button type="button" className="prev-btn" onClick={prevPage}>
+        <HiChevronDoubleLeft />
+        prev
+      </button>
+      <div className="btn-container">
+        {pages.map((pageNumber) => {
+          return (
+            <button
+              type="button"
+              key={pageNumber}
+              className={pageNumber === page ? "pageBtn active" : "pageBtn"}
+              onClick={() => {
+                console.log("change page");
+              }}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+      </div>
+
+      <button type="button" className="next-btn" onClick={nextPage}>
+        next
+        <HiChevronDoubleRight />
+      </button>
+    </Wrapper>
+  );
+};
+
+export default PageBtnContainer;
