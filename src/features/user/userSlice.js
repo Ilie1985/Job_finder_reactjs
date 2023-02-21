@@ -10,6 +10,7 @@ import {
   loginUserThunk,
   registerUserThunk,
   updateUserThunk,
+  clearStoreThunk,
 } from "./userThunk";
 
 //============================================================
@@ -41,6 +42,8 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const clearStore = createAsyncThunk("user/clearStore", clearStoreThunk);
+
 const userSlice = createSlice({
   name: "user",
   initialState: initialState,
@@ -48,12 +51,12 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
-    logoutUser: (state,{payload}) => {
+    logoutUser: (state, { payload }) => {
       state.user = null;
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
-      if(payload){
-        toast.success(payload)
+      if (payload) {
+        toast.success(payload);
       }
     },
   },
@@ -100,6 +103,9 @@ const userSlice = createSlice({
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
+      })
+      .addCase(clearStore.rejected, () => {
+        toast.error("There was an error");
       });
   },
 });
